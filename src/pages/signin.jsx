@@ -102,7 +102,7 @@ const SignInPage = () => {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-gray-500">
-          <p>Protected by enterprise-grade security</p>
+          <p>Protected by Harsvardhan Bhosale </p>
           <div className="flex items-center justify-center gap-2 mt-2">
             <span>•</span>
             <a href="#" className="hover:text-gray-700">
