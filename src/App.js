@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import SignUpPage from './pages/signup';
 import SignInPage from './pages/signin';
@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 //import TripMonitor from './components/TripMonitor';
 import OlaTripMonitor from './components/OlaTripMonitor';
+import TripInProgress from './components/TripInProgress';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +35,16 @@ function App() {
             element={
               user ? (
                 <OlaTripMonitor userId={userId} />
+              ) : (
+                <Navigate to="/signin" replace />
+              )
+            }
+          />
+          <Route
+            path="/trip-in-progress"
+            element={
+              user ? (
+                <TripInProgress userId={userId} />
               ) : (
                 <Navigate to="/signin" replace />
               )

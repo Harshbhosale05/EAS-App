@@ -133,6 +133,44 @@ const mapServices = {
     }
   },
 
+  getOptimalRoute: async (origin, destination) => {
+    try {
+      if (!origin || !destination) {
+        throw new Error('Origin and destination are required');
+      }
+
+      const params = {
+        origin: typeof origin === 'string' ? origin : `${origin.lat},${origin.lng}`,
+        destination: typeof destination === 'string' ? destination : `${destination.lat},${destination.lng}`,
+        api_key: API_KEY,
+        optimize: true // Add this parameter to suggest the optimal route
+      };
+
+      const response = await olaAxios.post('/routing/v1/directions', null, {
+        params,
+        headers: { 
+          'X-Request-Id': 'GetOptimalRoute'
+        }
+      });
+
+      if (!response.data) {
+        throw new Error('No data received from directions API');
+      }
+
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (error) {
+      console.error('Optimal Route Error:', error);
+      return {
+        success: false,
+        error: error.response?.data?.message || error.message,
+        data: null
+      };
+    }
+  },
+
   // Helper method to format coordinates
   formatCoordinates: (lat, lng) => {
     if (typeof lat === 'number' && typeof lng === 'number') {

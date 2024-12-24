@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import mapServices from '../apis/mapServices';
 
 const OLA_API_KEY = 'T40W6FLKInLU1rWLNNx9nbevI5Sf18nWQaMWzBoR';
 const OLA_API_BASE_URL = 'https://api.olamaps.io';
@@ -14,6 +16,7 @@ const OlaTripMonitor = () => {
   const [error, setError] = useState(null);
   const [tripActive, setTripActive] = useState(false);
   const searchTimeout = useRef(null);
+  const navigate = useNavigate();
 
   const searchPlaces = async (query) => {
     if (!query) {
@@ -23,15 +26,12 @@ const OlaTripMonitor = () => {
 
     setIsSearching(true);
     try {
-      const response = await fetch(`${OLA_API_BASE_URL}/places/v1/autocomplete?input=${encodeURIComponent(query)}&api_key=${OLA_API_KEY}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) throw new Error('Failed to fetch search results');
-      const data = await response.json();
-      setSearchResults(data.predictions || []);
+      const response = await mapServices.autocomplete(query);
+      if (response.success) {
+        setSearchResults(response.data.predictions);
+      } else {
+        setError(response.error);
+      }
     } catch (error) {
       console.error('Search error:', error);
       setError('Failed to search locations');
@@ -65,24 +65,17 @@ const OlaTripMonitor = () => {
         };
 
         try {
-          const response = await fetch(
-            `${OLA_API_BASE_URL}/places/v1/reverse-geocode?lat=${location.latitude}&lng=${location.longitude}&api_key=${OLA_API_KEY}`,
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-
-          if (!response.ok) throw new Error('Failed to get address details');
-          const data = await response.json();
-
-          const locationWithAddress = {
-            ...location,
-            address: data.address || 'Location found',
-          };
-
-          setCurrentLocation(locationWithAddress);
+          const response = await mapServices.reverseGeocode(location.latitude, location.longitude);
+          if (response.success) {
+            const locationWithAddress = {
+              ...location,
+              address: response.data.address || 'Location found',
+            };
+            setCurrentLocation(locationWithAddress);
+          } else {
+            setCurrentLocation(location);
+            setError(response.error);
+          }
         } catch (error) {
           console.error('Reverse geocoding error:', error);
           setCurrentLocation(location);
@@ -104,11 +97,17 @@ const OlaTripMonitor = () => {
 
     setTripActive(true);
     // Start trip logic here
-  };
-
-  const handleStopTrip = () => {
-    setTripActive(false);
-    // Stop trip logic here
+    navigate('/trip-in-progress', {
+      state: {
+        currentLocation,
+        selectedDestination: {
+          ...selectedDestination,
+          latitude: selectedDestination.geometry.location.lat,
+          longitude: selectedDestination.geometry.location.lng,
+        },
+        safetyInterval,
+      },
+    });
   };
 
   return (
@@ -211,13 +210,6 @@ const OlaTripMonitor = () => {
             className="w-full px-4 py-2 bg-green-500 text-white rounded-md"
           >
             Start Trip
-          </button>
-          <button
-            onClick={handleStopTrip}
-            disabled={!tripActive}
-            className="w-full px-4 py-2 bg-red-500 text-white rounded-md"
-          >
-            Stop Trip
           </button>
         </div>
       </div>
