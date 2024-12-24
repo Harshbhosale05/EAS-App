@@ -7,7 +7,8 @@ import SignInPage from './pages/signin';
 import EmergencyContactsPage from './pages/EmergencyContactsPage';
 import Footer from './components/Footer';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import TripMonitor from './components/TripMonitor';
+//import TripMonitor from './components/TripMonitor';
+import OlaTripMonitor from './components/OlaTripMonitor';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,7 +33,7 @@ function App() {
             path="/trip"
             element={
               user ? (
-                <TripMonitor userId={userId} />
+                <OlaTripMonitor userId={userId} />
               ) : (
                 <Navigate to="/signin" replace />
               )

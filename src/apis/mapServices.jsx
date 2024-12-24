@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'FIiKDAZyAcwy-HWNL9lMsOsb9qn';
+const API_KEY = 'T40W6FLKInLU1rWLNNx9nbevI5Sf18nWQaMWzBoR';
 const BASE_URL = 'https://api.olamaps.io';
 
 // Create axios instance with common config

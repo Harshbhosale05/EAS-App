@@ -1,21 +1,3 @@
-// import { getDatabase, ref, set, update } from 'firebase/database';
-
-// const firebaseUtils = {
-//   updateLocation: async (userId, location) => {
-//     const db = getDatabase();
-//     const locationRef = ref(db, `users/${userId}/location`);
-//     try {
-//       await update(locationRef, {
-//         ...location,
-//         timestamp: Date.now(),
-//       });
-//     } catch (error) {
-//       console.error('Firebase Location Update Error:', error);
-//     }
-//   },
-// };
-
-// export default firebaseUtils;
 
 
 
