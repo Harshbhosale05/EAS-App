@@ -33,7 +33,7 @@ const SignInPage = () => {
         {/* Logo and Title */}
         <div className="text-center mb-8">
         <AiOutlineAlert className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-          <h1 className="text-3xl font-bold text-gray-900">EAS User Portal</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Alertmate User Portal</h1>
           <p className="text-gray-500 mt-2">Sign in to access your account</p>
         </div>
 
@@ -102,7 +102,7 @@ const SignInPage = () => {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-gray-500">
-          <p>Protected by Harsvardhan Bhosale </p>
+          <p>Protected by Alertmate </p>
           <div className="flex items-center justify-center gap-2 mt-2">
             <span>•</span>
             <a href="#" className="hover:text-gray-700">

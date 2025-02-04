@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import mapServices from '../apis/mapServices';
+import axios from 'axios';
 
 const OLA_API_KEY = 'T40W6FLKInLU1rWLNNx9nbevI5Sf18nWQaMWzBoR';
 const OLA_API_BASE_URL = 'https://api.olamaps.io';
@@ -89,6 +90,17 @@ const OlaTripMonitor = () => {
     );
   };
 
+  const handleCheckInCall = async () => {
+    const recipient = "+8830752464"; // Emergency contact number
+    try {
+      await axios.post("http://localhost:3001/make-call", { recipient });
+      alert("Call initiated!");
+    } catch (error) {
+      console.error("Error initiating call:", error);
+      alert("Failed to initiate call.");
+    }
+  };
+
   const handleStartTrip = () => {
     if (!currentLocation || !selectedDestination) {
       setError('Please set both current location and destination');
@@ -96,6 +108,7 @@ const OlaTripMonitor = () => {
     }
 
     setTripActive(true);
+    handleCheckInCall(); // Initiate safety check-in call when the trip starts
     // Start trip logic here
     navigate('/trip-in-progress', {
       state: {

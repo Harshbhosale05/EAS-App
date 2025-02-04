@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import { Bell, Navigation, Shield, UserPlus, Radio, MapPin } from 'lucide-react';
+import axios from 'axios';
 
 const HomePage = () => {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [isRecording, setIsRecording] = useState(false);
+
+  const handleSOS = async () => {
+    const message = "Emergency! I need help. My current location is: [link to location]";
+    const recipient = "+8830752464"; // Emergency contact number
+    try {
+      await axios.post("http://localhost:3001/send-sms", { message, recipient });
+      alert("Message sent!");
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send message.");
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto bg-gray-100 min-h-screen relative">
@@ -17,7 +30,7 @@ const HomePage = () => {
           <div className="mb-8 text-center">
             <button
               className="w-32 h-32 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg animate-pulse"
-              onClick={() => setCurrentScreen('emergency')}
+              onClick={handleSOS}
             >
               SOS
             </button>

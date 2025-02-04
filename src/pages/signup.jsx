@@ -43,7 +43,7 @@ const SignUpPage = () => {
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <AlertCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
-          <h1 className="text-3xl font-bold text-gray-900">EAS User Portal</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Alertmate User Portal</h1>
           <p className="text-gray-500 mt-2">Sign up to access the Emergency Alert System</p>
         </div>
 
