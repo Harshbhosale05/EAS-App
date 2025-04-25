@@ -1,0 +1,6 @@
+﻿services:
+  - type: web
+    name: eas-app
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
