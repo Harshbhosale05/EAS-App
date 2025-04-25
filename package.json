@@ -8,6 +8,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.2.1",
     "@radix-ui/react-select": "^2.1.4",
+    "@react-google-maps/api": "^2.20.6",
     "antd": "^5.22.5",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",

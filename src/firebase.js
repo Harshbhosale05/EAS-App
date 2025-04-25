@@ -31,8 +31,8 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, browserLocalPersistence } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, browserLocalPersistence } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -48,13 +48,26 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
-// Set authentication persistence
+// Initialize Firebase services
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Configure Google provider
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  // Set the client ID for the Google OAuth flow
+  client_id: '847114483472-bqpfvlhv7plvebkf8u7vpv5e43hvvhbr.apps.googleusercontent.com',
+  // Request user's profile information
+  prompt: 'select_account',
+  // Request access to user's profile and email
+  scope: 'profile email'
+});
+
+// Set default authentication persistence
 auth.setPersistence(browserLocalPersistence).catch((error) => {
   console.error("Error setting persistence:", error);
 });
 
-// Export the app and auth objects for use in other files
-export { app, auth };
+// Export Firebase services for use in other files
+export { app, auth, db, googleProvider };

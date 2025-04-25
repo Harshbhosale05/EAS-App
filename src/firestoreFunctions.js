@@ -1,7 +1,4 @@
-
-
-
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { app } from './firebase'; // Import Firebase app
 
 const db = getFirestore(app);
@@ -24,7 +21,6 @@ export const fetchEmergencyContacts = async (userId) => {
     throw error;
   }
 };
-
 
 // Add a new contact for a user
 export const addEmergencyContact = async (userId, contact) => {

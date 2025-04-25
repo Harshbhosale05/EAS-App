@@ -4,7 +4,7 @@ import axios from 'axios';
 const SOSPage = () => {
   const [message, setMessage] = useState('');
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [emergencyContacts, setEmergencyContacts] = useState(['+8830752464']); // Add more contacts if needed
+  const [emergencyContacts, setEmergencyContacts] = useState(['+8830752464']); 
 
   useEffect(() => {
     if (navigator.geolocation) {
