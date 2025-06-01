@@ -291,7 +291,7 @@ const GuardianDashboard = () => {
     } else if (!window.google) {
       // Load Google Maps script if not already loaded
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places,geometry`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCrb573DEWbfmIG7iaG3KW4gbFB20zmmCE&libraries=places,geometry`;
       script.async = true;
       script.onload = () => initializeMap();
       document.head.appendChild(script);

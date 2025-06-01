@@ -11,7 +11,7 @@ import Header from './Header';
 const libraries = ['places'];
 
 // Get Google Maps API key from environment variables or use a fallback
-const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || '';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyCrb573DEWbfmIG7iaG3KW4gbFB20zmmCE';
 
 const TripInProgress = ({ userId }) => {
   const navigate = useNavigate();
@@ -47,6 +47,8 @@ const TripInProgress = ({ userId }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     libraries,
+    version: "weekly",
+    region: "IN",
   });
 
   // State
