@@ -168,7 +168,7 @@ const SignInPage = () => {
       
       <main className="max-w-4xl mx-auto p-6 flex flex-col">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back to Sahyatri</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back to AlertMate</h1>
           <p className="text-gray-600">Your trusted companion, always by your side</p>
           
           <div className="mt-4 bg-blue-50 rounded-lg p-4 border border-blue-100 mx-auto max-w-xl">

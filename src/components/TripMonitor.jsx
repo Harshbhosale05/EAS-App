@@ -726,7 +726,7 @@ const TripMonitor = ({ userId }) => {
 
   return (
     <div className="trip-monitor bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-4">
-      <h1 className="text-2xl font-bold text-center my-4 text-blue-800">Sahyatri Trip Monitor</h1>
+      <h1 className="text-2xl font-bold text-center my-4 text-blue-800">AlertMate Trip Monitor</h1>
       
       {/* Notification Area */}
       {error && (

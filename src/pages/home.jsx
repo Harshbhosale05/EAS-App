@@ -56,7 +56,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header title="Sahyatri" showBackButton={false} />
+      <Header title="AlertMate" showBackButton={false} />
 
       <main className="flex-1 max-w-4xl mx-auto p-6 w-full">
         {/* Welcome Section */}

@@ -27,6 +27,7 @@ const GuardianDashboard = () => {
     alertsTriggered: 0,
     averageTripTime: 0
   });
+  const [showHelpToaster, setShowHelpToaster] = useState(false);
 
   // Check authentication and guardian status
   useEffect(() => {
@@ -514,6 +515,13 @@ const GuardianDashboard = () => {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHelpToaster(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -544,6 +552,25 @@ const GuardianDashboard = () => {
           </div>
         </div>
       </header>
+      
+      {/* Toaster Notification Bar */}
+      {showHelpToaster && (
+        <div style={{ position: 'fixed', top: '32px', left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          <div className="bg-red-600 text-white text-center px-8 py-4 font-semibold rounded-lg shadow-lg animate-blink border-2 border-red-800 text-lg flex items-center justify-center" style={{ minWidth: '320px', maxWidth: '90vw' }}>
+            <svg className="w-6 h-6 mr-3 inline-block" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {wardProfile && wardProfile.displayName ? `${wardProfile.displayName} needs help!` : 'User needs help!'}
+          </div>
+          <style>{`
+            @keyframes blink {
+              0%, 100% { background-color: #dc2626; }
+              50% { background-color: #fff; color: #dc2626; border-color: #dc2626; }
+            }
+            .animate-blink {
+              animation: blink 1s linear infinite;
+            }
+          `}</style>
+        </div>
+      )}
       
       <main className="container mx-auto px-4 py-6">
         {error && (

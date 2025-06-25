@@ -90,7 +90,7 @@ const SignUpPage = () => {
               <p className="text-gray-600 mb-6">{success}</p>
               <p className="text-gray-500">Redirecting to sign in page...</p>
               <p className="mt-4 text-blue-600 font-medium">
-                Welcome to Sahyatri - where your safety is our priority!
+                Welcome to AlertMate- where your safety is our priority!
               </p>
             </div>
           ) : (
