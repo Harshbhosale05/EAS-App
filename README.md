@@ -150,6 +150,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For queries, feedback or collaborations:
 
 📧 harshvardhan.safetyai@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/harshvardhan-dev/)  
+🔗 [LinkedIn]([https://www.linkedin.com/in/harshvardhan-dev/](https://www.linkedin.com/in/harshvardhan-bhosale-07a98b274/))  
 📦 Stay safe with #SahYatri
 
